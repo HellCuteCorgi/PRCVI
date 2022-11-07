@@ -25,7 +25,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>PRCVI</string>
+   <string>Просмотр изображения</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -53,68 +53,11 @@ QPushButton:hover {
    <property name="styleSheet">
     <string notr="true"/>
    </property>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>570</y>
-      <width>1071</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="AddNote">
-       <property name="font">
-        <font>
-         <pointsize>-1</pointsize>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true"/>
-       </property>
-       <property name="text">
-        <string>Добавить запись</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="EditNote">
-       <property name="font">
-        <font>
-         <pointsize>-1</pointsize>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
-       <property name="text">
-        <string>Изменить запись</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="DeleteNote">
-       <property name="font">
-        <font>
-         <pointsize>-1</pointsize>
-         <underline>false</underline>
-         <strikeout>false</strikeout>
-        </font>
-       </property>
-       <property name="text">
-        <string>Удалить запись</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="OpenFile">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>260</y>
+      <y>30</y>
       <width>171</width>
       <height>51</height>
      </rect>
@@ -136,11 +79,31 @@ QPushButton:hover {
       <x>196</x>
       <y>22</y>
       <width>851</width>
-      <height>521</height>
+      <height>611</height>
      </rect>
     </property>
     <property name="text">
      <string>ImageLabel</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="AddNote">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>570</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="text">
+     <string>Добавить данные</string>
     </property>
    </widget>
   </widget>
