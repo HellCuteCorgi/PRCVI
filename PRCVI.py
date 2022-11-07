@@ -1,7 +1,5 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 from AddNoteWind import Ui_AddNoteWindow
-from EditNoteWind import Ui_EditNote
-from DeleteNoteWind import Ui_DeleteNoteWind
 from OpenFileWind import Ui_OpenFile
 
 class Ui_MainWindow(object):
@@ -14,13 +12,13 @@ class Ui_MainWindow(object):
 
     def openEditNoteWind(self):
         self.window2 = QtWidgets.QMainWindow()
-        self.ui = Ui_EditNote()
+        self.ui = Ui_AddNoteWindow()
         self.ui.setupUi(self.window2)
         self.window2.show()
 
     def openDeleteNoteWind(self):
         self.window3 = QtWidgets.QMainWindow()
-        self.ui = Ui_DeleteNoteWind()
+        self.ui = Ui_AddNoteWindow()
         self.ui.setupUi(self.window3)
         self.window3.show()
 
@@ -29,8 +27,6 @@ class Ui_MainWindow(object):
         self.ui = Ui_OpenFile()
         self.ui.setupUi(self.window4)
         self.window4.show()
-
-
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -79,7 +75,7 @@ class Ui_MainWindow(object):
         self.AddNote.setStyleSheet("")
         self.AddNote.setObjectName("AddNote")
         self.horizontalLayout.addWidget(self.AddNote)
-        self.EditNote = QtWidgets.QPushButton(self.horizontalLayoutWidget, clicked = lambda: self.openEditNoteWind())
+        self.EditNote = QtWidgets.QPushButton(self.horizontalLayoutWidget, clicked = lambda: self.openAddNoteWind())
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setUnderline(False)
@@ -87,7 +83,7 @@ class Ui_MainWindow(object):
         self.EditNote.setFont(font)
         self.EditNote.setObjectName("EditNote")
         self.horizontalLayout.addWidget(self.EditNote)
-        self.DeleteNote = QtWidgets.QPushButton(self.horizontalLayoutWidget, clicked = lambda: self.openDeleteNoteWind())
+        self.DeleteNote = QtWidgets.QPushButton(self.horizontalLayoutWidget, clicked = lambda: self.openAddNoteWind())
         font = QtGui.QFont()
         font.setPointSize(-1)
         font.setUnderline(False)
@@ -95,7 +91,7 @@ class Ui_MainWindow(object):
         self.DeleteNote.setFont(font)
         self.DeleteNote.setObjectName("DeleteNote")
         self.horizontalLayout.addWidget(self.DeleteNote)
-        self.OpenFile = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openOpenFileWind())
+        self.OpenFile = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openAddNoteWind())
         self.OpenFile.setGeometry(QtCore.QRect(10, 260, 171, 51))
         font = QtGui.QFont()
         font.setPointSize(-1)
