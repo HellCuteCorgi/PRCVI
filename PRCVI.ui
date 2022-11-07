@@ -150,6 +150,19 @@ QPushButton:hover {
      <string>Открыть файл</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>196</x>
+      <y>22</y>
+      <width>851</width>
+      <height>521</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ImageLabel</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources>
