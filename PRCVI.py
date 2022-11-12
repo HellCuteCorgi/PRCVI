@@ -11,14 +11,16 @@ from FuncWind import Ui_FuncWind
 
 class Ui_MainWindow(object):
 
-    def openFuncWind(self):
+    def openFuncWind(self, conn):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_FuncWind()
         self.ui.setupUi(self.window)
+        self.ui.UpdateTable("select * from main_view", conn)
+
         self.window.show()
 
 
-    def setupUi(self, MainWindow):
+    def setupUi(self, MainWindow, _configDB):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1077, 666)
         MainWindow.setMinimumSize(QtCore.QSize(0, 0))
@@ -61,7 +63,8 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(196, 22, 851, 611))
         self.label.setObjectName("label")
-        self.AddNote = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openFuncWind())
+        self.AddNote = QtWidgets.QPushButton(self.centralwidget,
+                                             clicked=lambda: self.openFuncWind(self.CreateDBConnection(_configDB)))
         self.AddNote.setGeometry(QtCore.QRect(10, 570, 171, 51))
         font = QtGui.QFont()
         font.setPointSize(-1)
@@ -74,6 +77,17 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    def CreateDBConnection(self, config):
+        try:
+            import psycopg2
+            conn = psycopg2.connect(database=config["database"], user=config["user"],
+                                    password=config["password"], host=config["host"], port=int(config["port"]))
+            # connection.autocommit = True
+            print("[INFO] Connection to the database was successful!")
+            return conn
+        except Exception as _ex:
+            print(f"[INFO] Error while connection with PostgreSQL - {_ex}")
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Просмотр изображения"))
@@ -82,11 +96,11 @@ class Ui_MainWindow(object):
         self.AddNote.setText(_translate("MainWindow", "Добавить данные"))
 
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-    sys.exit(app.exec())
+    sys.exit(app.exec())"""

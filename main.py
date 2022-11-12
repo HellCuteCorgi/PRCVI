@@ -1,41 +1,40 @@
-from PRCVI import *
+import json
+import sys
+
 import psycopg2
-from config import *
-from PyQt6.QtWidgets import QApplication, QPushButton
-from PyQt6 import uic
 
-try:
-#connect to exist database
-    connection = psycopg2.connect(
-        host=host,
-        user=user,
-        password=password,
-        database=db_name
-    )
-    connection.autocommit = True
+from PRCVI import *
 
-#An object containing methods for executing DB commands
-    with connection.cursor() as cursor:
-        cursor.execute(
-            "SELECT version();"
-        )
-        print(f"Server version: {cursor.fetchone()}")
 
-except Exception as _ex:
-    print("[INFO] Error while with PostgreSQL", _ex)
-finally:
-    if connection:
-        connection.close()
-        print("[INFO] PostgreSQL connection closed")
+def CreateDBConnection(config):
+    try:
+        conn = psycopg2.connect(database=config["database"], user=config["user"],
+                                password=config["password"], host=config["host"], port=int(config["port"]))
+        # connection.autocommit = True
+        print("[INFO] Connection to the database was successful!")
+        return conn
+    except Exception as _ex:
+        print(f"[INFO] Error while connection with PostgreSQL - {_ex}")
 
-Form, Window = uic.loadUiType("PRCVI.ui")
 
 if __name__ == "__main__":
-    import sys
+    _configDB = {
+        "database": "",
+        "user": "",
+        "password": "",
+        "host": "",
+        "port": ""
+    }
+
+    with open("configDB.json", "r") as settingsDB:
+        _configDB = json.loads(settingsDB.read())
+        _configDB["password"] = "2523"
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui.setupUi(MainWindow, _configDB)
     MainWindow.show()
     sys.exit(app.exec())
+
 
